@@ -56,12 +56,11 @@ activeImage: 0
         // }
         next(){
             this.activeImage++;
-
-            
         },
         back(){
             this.activeImage--;
-        }
+        },
+    
     },
     mounted() {
 
