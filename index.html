@@ -10,45 +10,38 @@
 </head>
 
 <body>
-
     <div id="app">
-        <!-- <div id="buttonContainer"></div> -->
 
-<div id="button">
-    <button @click="next">Avanti</button>
-    <button @click="back">Indietro</button><br>
-    <input type="number" v-model="activeImage">
-
-</div>
         <div class="container">
             <div class="slider-wrapper" tabindex="0">
 
-                <div v-for="image, i in images" :class=" checkImageVisibility(i)" class="item">
-                    <img :src="image" alt="" />
+                <div class="item">
+                    <img v-for="elemento , i in slides" :src=elemento.image :class="controlloImg(i,'active')"
+                        alt="image" />
                     <div class="text">
-                        <h3>{{ image.title }}</h3>
+                        <h3>{{slides[imgAttiva].title}}</h3>
                         <p>
-                            Experience the rise of Miles Morales as the new hero masters incredible, explosive new
-                            powers to become his own Spider-Man.
+                            {{slides[imgAttiva].text}}
                         </p>
                     </div>
                 </div>
-                
 
-               
-
-
-                
-                  
-                    <div class="thumb active">
-                        <img v-for="thumbnail, i in images" :src="thumbnail" :class=" checkImageVisibility(i)" />
+                <div class="thumbs" @mouseenter="stopIntervallo()" @mouseleave="startIntervallo()">
+                    <div @click="previous()" class="prev"></div>
+                    <div @click="next()" class="next"></div>
+                    <div class="thumb" v-for="elemento , i in slides" @click="miniToImg(i)"
+                        :class="controlloImg(i,'active')" alt="Svezia">
+                        <img :src=elemento.image />
                     </div>
+                    
                 </div>
+
             </div>
         </div>
 
     </div>
 
+    
     <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
     <script src="./js/script.js"></script>
 </body>
